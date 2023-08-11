@@ -6,7 +6,7 @@ const {validateRegistration} = require('../Middleware/userMiddleware')
 
 
 
-routes.get("/login",userController.login)
+routes.post("/login",userController.login)
 routes.post("/register",validateRegistration,userController.register)
 
 
