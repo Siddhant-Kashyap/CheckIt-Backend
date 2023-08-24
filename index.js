@@ -1,6 +1,7 @@
 const express = require("express");
 const connectDb = require("./config/dbConnection")
 const userRoutes = require("./Routes/userRoutes")
+const taskRoutes = require("./Routes/taskRoutes")
 
 
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //to the routes
 app.use('/user',userRoutes)
+app.use('/tasks',taskRoutes)
 
 //server is started
 app.listen(PORT,()=>{

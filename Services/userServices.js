@@ -3,18 +3,36 @@ const UserModel = require("../Model/userModel")
 class UserService{
 
     find = async (email)=>{
-        const user =  await UserModel.findOne({email:email})
-        return user;
+        try {
+            const user =  await UserModel.findOne({email:email})
+            return user;
+        } catch (error) {
+            throw new Error('Error fetching user');
+        }
+       
 
     }
     save = async (user)=>{
-        const result = await user.save();
-        return result;
+        try{
+
+            const result = await user.save();
+            return result;
+        }
+        catch(e){
+            throw new Error('Error saving user');
+        }
+       
     }
     create =async (user)=>{
-       const newUser = new UserModel(user);
+
+        try {
+            const newUser = new UserModel(user);
        const saveUser = await this.save(newUser);
        return saveUser;
+        } catch (error) {
+            throw new Error('Error creating user');
+        }
+       
     }
 
 

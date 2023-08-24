@@ -32,34 +32,29 @@ const login=async (req,res)=>{
 }
 
 const register =async (req,res)=>{
-    try{
-        const {firstName,lastName,email,password} = req.body;
-    const hashedPassword = await bcrypt.hash(password,10); 
-    const user = {
-        name : firstName+lastName,
-        email :email,
-        password : hashedPassword
-    }
-    const existingUser = await userServices.find(email);
-    if(existingUser){
-        res.send("User Already existed")
-    }
-    else{
-        const user_created = await userServices.create(user)
-        
-        const token = jwt.sign({email:user_created.email , id:user_created._id},SECRET_KEY);
-        res.status(201).json({user:user_created,token:token})
+    try {
+      const { firstName, lastName, email, password } = req.body;
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = {
+        name: firstName + lastName,
+        email: email,
+        password: hashedPassword,
+      };
+      const existingUser = await userServices.find(email);
+      if (existingUser) {
+        res.send("User Already existed");
+      } else {
+        const user_created = await userServices.create(user);
 
-
-    }
-
-
-
-
-    }catch(error){
-        console.log(error)
-        res.status(500).json({message:"Internal Server Error"})
-
+        const token = jwt.sign(
+          { email: user_created.email, id: user_created._id },
+          SECRET_KEY
+        );
+        res.status(201).json({ user: user_created, token: token });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Internal Server Error" });
     }
     
     
