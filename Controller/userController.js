@@ -13,11 +13,11 @@ const login=async (req,res)=>{
     try{
         const existingUser  = await userServices.find(email);
         if(!existingUser){
-            return res.status(404).json({message:"User not found"})
+            return res.status(404).json({Email:"User not found"})
         }
         const matchPassword = await bcrypt.compare(password,existingUser.password);
         if(!matchPassword){
-            return res.status(400).json({message:"Invalid credentials"})
+            return res.status(400).json({Password:"Invalid credentials"})
         }
         const token = jwt.sign({email:existingUser.email , id:existingUser._id},SECRET_KEY);
             res.status(201).json({token:token})

@@ -6,18 +6,18 @@ const validateRegistration = (req, res, next) => {
   const errors = [];
 
   if (!firstName) {
-    errors.push(' First Name is required');
+    errors.push('First Name is required.');
   }
   if (!lastName) {
-    errors.push('Last Name is required');
+    errors.push('Last Name is required.');
   }
 
   if (!validator.isEmail(email)) {
-    errors.push('Invalid email format');
+    errors.push('Email is Invalid Format.');
   }
 
   if (!validator.isLength(password, { min: 6 })) {
-    errors.push('Password must be at least 6 characters long');
+    errors.push('Password must be at least 6 characters long.');
   }
 
   if (errors.length > 0) {

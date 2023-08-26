@@ -9,7 +9,7 @@ routes.get('/:id',auth,getTask);
 routes.get('/',auth,getAllTask);
 routes.post('/createTask',auth,createTask);
 routes.delete('/deleteTask',auth,deleteTask);
-routes.put('/update',auth,updateTask);
+routes.put('/updateTask',auth,updateTask);
 
 
 module.exports = routes
