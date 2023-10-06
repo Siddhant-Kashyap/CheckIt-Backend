@@ -7,7 +7,7 @@ const cors = require("cors")
 
 const app = express();
 
-const PORT = 8080;
+const PORT = process.env.PORT || 3030;
 
 
 //connection to db 
@@ -18,12 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Set up CORS middleware
-app.use(cors({
-    origin: "http://localhost:3000", // Replace with your frontend URL
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-    optionsSuccessStatus: 204,
-  }));
+app.use(cors());
   
 //to the routes
 app.use('/user',userRoutes)
